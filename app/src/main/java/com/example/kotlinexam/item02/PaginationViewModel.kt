@@ -17,6 +17,8 @@ class PaginationViewModel : ViewModel(), AnkoLogger {
         newInstance()
     }
 
+    var currentPage = 1
+
     val employees = MutableLiveData<List<Employee>>()
 
     private fun newInstance(): EmployeeService {
@@ -36,7 +38,15 @@ class PaginationViewModel : ViewModel(), AnkoLogger {
 
                 withContext(Dispatchers.Main) {
                     // Main 쓰레드
-                    employees.value = body
+                    if (employees.value == null) {
+                        employees.value = body
+                    } else {
+                        val newList = arrayListOf<Employee>()
+                        newList.addAll(employees.value!!)
+                        newList.addAll(body)
+                        employees.value = newList
+                    }
+                    currentPage = page
                 }
             } catch (err: Exception) {
                 // 에러

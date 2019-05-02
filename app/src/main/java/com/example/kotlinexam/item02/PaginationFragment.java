@@ -43,15 +43,28 @@ public class PaginationFragment extends Fragment {
         PaginationViewModel viewModel = ViewModelProviders.of(this).get(PaginationViewModel.class);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView,
+                                   int dx, int dy) {
+                boolean isScrollable = recyclerView.canScrollVertically(1);
+
+                if (!isScrollable) {
+                    viewModel.fetchEmployees(viewModel.getCurrentPage() + 1);
+                }
+            }
+        });
 
         EmployeeAdapter adapter = new EmployeeAdapter();
         recyclerView.setAdapter(adapter);
 
         viewModel.getEmployees().observe(this, employees -> {
-             adapter.setItems(employees);
+            adapter.setItems(employees);
         });
 
         viewModel.fetchEmployees(1);
+
+
     }
 
     private static class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder> {
