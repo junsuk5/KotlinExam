@@ -3,11 +3,12 @@ package com.example.kotlinexam.item02
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.kotlinexam.item02.models.Employee
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,24 +23,24 @@ class PaginationViewModel : ViewModel(), AnkoLogger {
         val retrofit = Retrofit.Builder()
             .baseUrl(EmployeeService.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
         return retrofit.create(EmployeeService::class.java)
     }
 
     fun fetchEmployees(page: Int) {
-        service.getEmployees(page).enqueue(object : Callback<List<Employee>> {
-            override fun onFailure(call: Call<List<Employee>>, t: Throwable) {
-                // 실패
-                error { t.localizedMessage }
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // Background 쓰레드
+                val body = service.getEmployees(page).await()
 
-            override fun onResponse(
-                call: Call<List<Employee>>,
-                response: Response<List<Employee>>
-            ) {
-                // 성공
-                response.body()?.let { employees.value = it }
+                withContext(Dispatchers.Main) {
+                    // Main 쓰레드
+                    employees.value = body
+                }
+            } catch (err: Exception) {
+                // 에러
             }
-        })
+        }
     }
 }
