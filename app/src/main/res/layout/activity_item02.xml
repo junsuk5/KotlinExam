@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".item02.Item02Activity">
 
+    <fragment
+        android:id="@+id/frag_pagination"
+        android:name="com.example.kotlinexam.item02.PaginationFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>

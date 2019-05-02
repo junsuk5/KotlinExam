@@ -1,6 +1,7 @@
 package com.example.kotlinexam.item02;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -39,10 +40,18 @@ public class PaginationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        PaginationViewModel viewModel = ViewModelProviders.of(this).get(PaginationViewModel.class);
+
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
         EmployeeAdapter adapter = new EmployeeAdapter();
         recyclerView.setAdapter(adapter);
+
+        viewModel.getEmployees().observe(this, employees -> {
+             adapter.setItems(employees);
+        });
+
+        viewModel.fetchEmployees(1);
     }
 
     private static class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder> {
