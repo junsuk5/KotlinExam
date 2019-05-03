@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".item02.Item02Activity"></activity>
+        <activity android:name=".item03.Item03Activity"></activity>
+        <activity android:name=".item02.Item02Activity" />
         <activity android:name=".item01.Item01TargetActivity" />
         <activity android:name=".item01.Item01Activity" />
         <activity android:name=".MainActivity">
