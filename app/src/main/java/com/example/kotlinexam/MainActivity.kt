@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
             startActivity(intent)
         }
         recycler_view.adapter = adapter
+        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         val subjects = arrayListOf<Subject>()
         subjects.add(Subject("프래그먼트에서 액티비티에 값 전달", Item01Activity::class.java))
