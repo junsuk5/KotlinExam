@@ -12,6 +12,7 @@ import com.example.kotlinexam.databinding.ItemSubjectBinding
 import com.example.kotlinexam.item01.Item01Activity
 import com.example.kotlinexam.item02.Item02Activity
 import com.example.kotlinexam.item03.Item03Activity
+import com.example.kotlinexam.item03java.Item03JavaActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.AnkoLogger
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         subjects.add(Subject("프래그먼트에서 액티비티에 값 전달", Item01Activity::class.java))
         subjects.add(Subject("Pagination", Item02Activity::class.java))
         subjects.add(Subject("SearchView", Item03Activity::class.java))
+        subjects.add(Subject("SearchView - Java", Item03JavaActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()
