@@ -14,6 +14,7 @@ import com.example.kotlinexam.item02.Item02Activity
 import com.example.kotlinexam.item03.Item03Activity
 import com.example.kotlinexam.item03java.Item03JavaActivity
 import com.example.kotlinexam.item04.Item04Activity
+import com.example.kotlinexam.item04java.Item04JavaActivity
 import com.example.kotlinexam.item05.Item05Activity
 import com.example.kotlinexam.item06.Item06Activity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         subjects.add(Subject("SearchView", Item03Activity::class.java))
         subjects.add(Subject("SearchView - Java", Item03JavaActivity::class.java))
         subjects.add(Subject("WorkManager", Item04Activity::class.java))
+        subjects.add(Subject("WorkManager - Java", Item04JavaActivity::class.java))
         subjects.add(Subject("Rxkotlin", Item05Activity::class.java))
         subjects.add(Subject("ContextMenu + RecyclerView", Item06Activity::class.java))
 
