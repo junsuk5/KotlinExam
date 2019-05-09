@@ -19,7 +19,7 @@ public class Item03JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item03_java);
 
         SearchView searchView = findViewById(R.id.search_view);
-        TextView resultTextView = findViewById(R.id.textView);
+        final TextView resultTextView = findViewById(R.id.textView);
         resultTextView.setText(getResult());
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
