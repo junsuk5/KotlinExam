@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".item07java.Item07JavaActivity"></activity>
+        <activity android:name=".item08java.Item08JavaActivity"></activity>
+        <activity android:name=".item07java.Item07JavaActivity" />
         <activity android:name=".item04java.Item04JavaActivity" />
         <activity android:name=".item06.Item06Activity" />
         <activity android:name=".item05.Item05Activity" />
