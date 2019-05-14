@@ -19,6 +19,7 @@ import com.example.kotlinexam.item05.Item05Activity
 import com.example.kotlinexam.item06.Item06Activity
 import com.example.kotlinexam.item07java.Item07JavaActivity
 import com.example.kotlinexam.item08java.Item08JavaActivity
+import com.example.kotlinexam.item09java.Item09JavaActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.AnkoLogger
 
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         subjects.add(Subject("ContextMenu + RecyclerView", Item06Activity::class.java))
         subjects.add(Subject("Undo", Item07JavaActivity::class.java))
         subjects.add(Subject("터치", Item08JavaActivity::class.java))
+        subjects.add(Subject("센서", Item09JavaActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()

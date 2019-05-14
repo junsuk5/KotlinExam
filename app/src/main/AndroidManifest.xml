@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- 구글 플레이 필터링 -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".item08java.Item08JavaActivity"></activity>
+        <activity android:name=".item09java.Item09JavaActivity"></activity>
+        <activity android:name=".item08java.Item08JavaActivity" />
         <activity android:name=".item07java.Item07JavaActivity" />
         <activity android:name=".item04java.Item04JavaActivity" />
         <activity android:name=".item06.Item06Activity" />
