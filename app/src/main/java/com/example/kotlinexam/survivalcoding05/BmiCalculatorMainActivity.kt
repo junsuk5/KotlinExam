@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.kotlinexam.R
 
+//https://developer.android.com/guide/navigation/navigation-ui
 class BmiCalculatorMainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
