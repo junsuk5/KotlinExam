@@ -1,7 +1,7 @@
 package com.example.kotlinexam.item05
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.R
 import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.Observable

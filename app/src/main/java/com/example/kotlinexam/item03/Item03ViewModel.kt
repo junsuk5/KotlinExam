@@ -1,7 +1,7 @@
 package com.example.kotlinexam.item03
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.kotlinexam.item03.repository.MovieRepository
 
 class Item03ViewModel : ViewModel() {

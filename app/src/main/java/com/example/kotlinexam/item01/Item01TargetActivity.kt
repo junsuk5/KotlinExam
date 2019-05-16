@@ -1,7 +1,7 @@
 package com.example.kotlinexam.item01
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug

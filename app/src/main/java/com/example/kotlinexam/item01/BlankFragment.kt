@@ -3,8 +3,8 @@ package com.example.kotlinexam.item01
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.example.kotlinexam.databinding.ItemPersonBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.Serializable
 
-class BlankFragment : Fragment() {
+class BlankFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +50,7 @@ data class Person(var name: String, var age: Int) : Serializable
 
 // Adapter
 class PersonAdapter(val callback: (person: Person) -> Unit) :
-    RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
     var items = arrayListOf<Person>()
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): PersonViewHolder {
@@ -71,6 +71,6 @@ class PersonAdapter(val callback: (person: Person) -> Unit) :
 
 
     // ViewHolder
-    class PersonViewHolder(val binding: ItemPersonBinding) : RecyclerView.ViewHolder(binding.root)
+    class PersonViewHolder(val binding: ItemPersonBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 
 }

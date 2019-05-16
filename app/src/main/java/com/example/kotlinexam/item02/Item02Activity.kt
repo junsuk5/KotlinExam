@@ -1,7 +1,7 @@
 package com.example.kotlinexam.item02
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.R
 
 class Item02Activity : AppCompatActivity() {

@@ -1,9 +1,9 @@
 package com.example.kotlinexam.item03
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.SearchView
 import com.example.kotlinexam.R
 import kotlinx.android.synthetic.main.activity_item03.*

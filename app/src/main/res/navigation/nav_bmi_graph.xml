@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bmi_graph"
+    app:startDestination="@id/bmiMainFragment">
+
+    <fragment
+        android:id="@+id/bmiMainFragment"
+        android:name="com.example.kotlinexam.survivalcoding05.BmiMainFragment"
+        android:label="입력"
+        tools:layout="@layout/fragment_bmi_main">
+        <action
+            android:id="@+id/action_bmiMainFragment_to_bmiResultFragment"
+            app:destination="@id/bmiResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bmiResultFragment"
+        android:name="com.example.kotlinexam.survivalcoding05.BmiResultFragment"
+        android:label="결과"
+        tools:layout="@layout/fragment_bmi_result" />
+</navigation>

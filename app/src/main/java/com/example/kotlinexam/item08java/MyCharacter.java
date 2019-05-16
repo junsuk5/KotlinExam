@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
 
-public class MyCharacter extends android.support.v7.widget.AppCompatImageView {
+public class MyCharacter extends androidx.appcompat.widget.AppCompatImageView {
     private static final String TAG = MyCharacter.class.getSimpleName();
 
     public MyCharacter(Context context) {

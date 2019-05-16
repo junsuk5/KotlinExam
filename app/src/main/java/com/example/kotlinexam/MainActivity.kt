@@ -3,11 +3,9 @@ package com.example.kotlinexam
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.databinding.ItemSubjectBinding
 import com.example.kotlinexam.item01.Item01Activity
 import com.example.kotlinexam.item02.Item02Activity
@@ -20,6 +18,7 @@ import com.example.kotlinexam.item06.Item06Activity
 import com.example.kotlinexam.item07java.Item07JavaActivity
 import com.example.kotlinexam.item08java.Item08JavaActivity
 import com.example.kotlinexam.item09java.Item09JavaActivity
+import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.AnkoLogger
 
@@ -34,7 +33,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
             startActivity(intent)
         }
         recycler_view.adapter = adapter
-        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recycler_view.addItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
+                this,
+                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+            )
+        )
 
         val subjects = arrayListOf<Subject>()
         subjects.add(Subject("프래그먼트에서 액티비티에 값 전달", Item01Activity::class.java))
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
         subjects.add(Subject("Undo", Item07JavaActivity::class.java))
         subjects.add(Subject("터치", Item08JavaActivity::class.java))
         subjects.add(Subject("센서", Item09JavaActivity::class.java))
+        subjects.add(Subject("비만도 계산기", BmiCalculatorMainActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()
@@ -58,10 +63,10 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
 data class Subject(val title: String, val clazz: Class<out Activity>)
 
 class SubjectAdapter(private val clickListener: (person: Subject) -> Unit) :
-    RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder>() {
     var items = arrayListOf<Subject>()
 
-    class SubjectViewHolder(val binding: ItemSubjectBinding) : RecyclerView.ViewHolder(binding.root)
+    class SubjectViewHolder(val binding: ItemSubjectBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
         val view = LayoutInflater.from(parent.context)
