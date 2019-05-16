@@ -20,9 +20,8 @@ import com.example.kotlinexam.item08java.Item08JavaActivity
 import com.example.kotlinexam.item09java.Item09JavaActivity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.AnkoLogger
 
-class MainActivity : AppCompatActivity(), AnkoLogger {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

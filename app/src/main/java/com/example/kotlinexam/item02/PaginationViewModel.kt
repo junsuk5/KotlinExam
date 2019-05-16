@@ -8,11 +8,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.jetbrains.anko.AnkoLogger
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PaginationViewModel : ViewModel(), AnkoLogger {
+class PaginationViewModel : ViewModel() {
     private val service by lazy {
         newInstance()
     }

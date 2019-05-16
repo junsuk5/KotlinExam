@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.kotlinexam.R
 
 class BmiResultFragment : Fragment() {
+    val args: BmiResultFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,10 +24,7 @@ class BmiResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val height = arguments?.getDouble("height")
-        val weight = arguments?.getDouble("weight")
-
-        Log.d("BmiResultFragment", "$height, $weight")
+        Log.d("BmiResultFragment", "${args.height}, ${args.weight}")
     }
 
 

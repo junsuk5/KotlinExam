@@ -1,13 +1,12 @@
 package com.example.kotlinexam.item06
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.R
 import kotlinx.android.synthetic.main.activity_item06.*
-import org.jetbrains.anko.toast
 
 class Item06Activity : AppCompatActivity() {
 
@@ -30,11 +29,11 @@ class Item06Activity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_item01 -> {
-                toast("아이템 01")
+//                toast("아이템 01")
                 return true
             }
             R.id.action_item02 -> {
-                toast("아이템 02")
+//                toast("아이템 02")
                 return true
             }
         }

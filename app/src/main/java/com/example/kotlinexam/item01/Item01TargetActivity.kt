@@ -3,11 +3,8 @@ package com.example.kotlinexam.item01
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinexam.R
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
-import org.jetbrains.anko.toast
 
-class Item01TargetActivity : AppCompatActivity(), AnkoLogger {
+class Item01TargetActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +12,7 @@ class Item01TargetActivity : AppCompatActivity(), AnkoLogger {
 
         val person: Person = intent.getSerializableExtra("person") as Person
 
-        debug { person }
-        toast(person.toString())
+//        debug { person }
+//        toast(person.toString())
     }
 }

@@ -18,5 +18,14 @@
         android:id="@+id/bmiResultFragment"
         android:name="com.example.kotlinexam.survivalcoding05.BmiResultFragment"
         android:label="결과"
-        tools:layout="@layout/fragment_bmi_result" />
+        tools:layout="@layout/fragment_bmi_result" >
+        <argument
+            android:name="height"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="weight"
+            app:argType="float"
+            android:defaultValue="0.0" />
+    </fragment>
 </navigation>
