@@ -12,20 +12,24 @@
         tools:layout="@layout/fragment_bmi_main">
         <action
             android:id="@+id/action_bmiMainFragment_to_bmiResultFragment"
-            app:destination="@id/bmiResultFragment" />
+            app:destination="@id/bmiResultFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left"
+            app:popEnterAnim="@anim/slide_from_bottom"
+            app:popExitAnim="@anim/slide_to_top" />
     </fragment>
     <fragment
         android:id="@+id/bmiResultFragment"
         android:name="com.example.kotlinexam.survivalcoding05.BmiResultFragment"
         android:label="결과"
-        tools:layout="@layout/fragment_bmi_result" >
+        tools:layout="@layout/fragment_bmi_result">
         <argument
             android:name="height"
-            app:argType="float"
-            android:defaultValue="0.0" />
+            android:defaultValue="0.0"
+            app:argType="float" />
         <argument
             android:name="weight"
-            app:argType="float"
-            android:defaultValue="0.0" />
+            android:defaultValue="0.0"
+            app:argType="float" />
     </fragment>
 </navigation>
