@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.kotlinexam.R
+import com.example.kotlinexam.toast
 import kotlinx.android.synthetic.main.fragment_bmi_result.*
 
 class BmiResultFragment : Fragment() {
@@ -26,6 +27,8 @@ class BmiResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bmi = args.weight / Math.pow(args.height / 100.0, 2.0)
+
+        toast("$bmi")
 
         when {
             bmi >= 35 -> result_text.text = "고도 비만"
