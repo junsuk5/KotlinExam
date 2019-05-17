@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".survivalcoding05.BmiCalculatorMainActivity"></activity>
+        <activity android:name=".survivalcoding06.StopWatchMainActivity"></activity>
+        <activity android:name=".survivalcoding05.BmiCalculatorMainActivity" />
         <activity android:name=".item09java.Item09JavaActivity" />
         <activity android:name=".item08java.Item08JavaActivity" />
         <activity android:name=".item07java.Item07JavaActivity" />

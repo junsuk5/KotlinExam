@@ -19,6 +19,7 @@ import com.example.kotlinexam.item07java.Item07JavaActivity
 import com.example.kotlinexam.item08java.Item08JavaActivity
 import com.example.kotlinexam.item09java.Item09JavaActivity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
+import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("터치", Item08JavaActivity::class.java))
         subjects.add(Subject("센서", Item09JavaActivity::class.java))
         subjects.add(Subject("비만도 계산기", BmiCalculatorMainActivity::class.java))
+        subjects.add(Subject("스탑워치", StopWatchMainActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()
