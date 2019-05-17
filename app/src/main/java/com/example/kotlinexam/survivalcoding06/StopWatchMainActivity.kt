@@ -9,11 +9,13 @@ import kotlinx.android.synthetic.main.activity_stop_watch_main.*
 
 class StopWatchMainActivity : AppCompatActivity() {
 
+    val viewModel : StopWatchViewModel by lazy {
+        ViewModelProviders.of(this).get(StopWatchViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stop_watch_main)
-
-        val viewModel = ViewModelProviders.of(this).get(StopWatchViewModel::class.java)
 
         viewModel.time.observe(this, Observer { time ->
             val sec = time / 100

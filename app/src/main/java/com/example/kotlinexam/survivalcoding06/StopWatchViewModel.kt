@@ -9,7 +9,8 @@ class StopWatchViewModel : ViewModel() {
     val time : MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()
     }
-    var isRunning = MutableLiveData<Boolean>()
+
+    val isRunning = MutableLiveData<Boolean>()
 
     init {
         time.value = 0
