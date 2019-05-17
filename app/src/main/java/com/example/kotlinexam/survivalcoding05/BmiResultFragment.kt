@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.kotlinexam.R
@@ -42,11 +43,10 @@ class BmiResultFragment : Fragment() {
 
         // 마지막 값 저장
         val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val editor = pref.edit()
-        editor.putFloat("height", args.height)
-            .putFloat("weight", args.weight)
-            .apply()
-
+        pref.edit {
+            putFloat("height", args.height)
+            putFloat("weight", args.weight)
+        }
 
         Log.d("BmiResultFragment", "${args.height}, ${args.weight}")
     }
