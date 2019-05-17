@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.kotlinexam.R
+import kotlinx.android.synthetic.main.fragment_bmi_main.*
 
 class BmiMainFragment : Fragment() {
 
@@ -18,9 +18,12 @@ class BmiMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_bmi_main, container, false)
-        val height_edit = view.findViewById<EditText>(R.id.height_edit)
-        val weight_edit = view.findViewById<EditText>(R.id.weight_edit)
+
+        return inflater.inflate(R.layout.fragment_bmi_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val height = pref.getFloat("height", 0f)
@@ -40,8 +43,6 @@ class BmiMainFragment : Fragment() {
             it.findNavController()
                 .navigate(action)
         }
-
-        return view
     }
 
 
