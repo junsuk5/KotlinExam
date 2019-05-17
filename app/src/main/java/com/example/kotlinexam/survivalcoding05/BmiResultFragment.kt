@@ -2,6 +2,7 @@ package com.example.kotlinexam.survivalcoding05
 
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,14 @@ class BmiResultFragment : Fragment() {
             bmi >= 18.5 -> result_text.text = "정상"
             else -> result_text.text = "저체중"
         }
+
+        // 마지막 값 저장
+        val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val editor = pref.edit()
+        editor.putFloat("height", args.height)
+            .putFloat("weight", args.weight)
+            .apply()
+
 
         Log.d("BmiResultFragment", "${args.height}, ${args.weight}")
     }
