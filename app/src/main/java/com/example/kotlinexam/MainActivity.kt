@@ -18,8 +18,10 @@ import com.example.kotlinexam.item06.Item06Activity
 import com.example.kotlinexam.item07java.Item07JavaActivity
 import com.example.kotlinexam.item08java.Item08JavaActivity
 import com.example.kotlinexam.item09java.Item09JavaActivity
+import com.example.kotlinexam.item10.Item10Activity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
+import com.example.kotlinexam.survivalcoding09.MyGalleryActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,8 +54,10 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("Undo", Item07JavaActivity::class.java))
         subjects.add(Subject("터치", Item08JavaActivity::class.java))
         subjects.add(Subject("센서", Item09JavaActivity::class.java))
-        subjects.add(Subject("비만도 계산기", BmiCalculatorMainActivity::class.java))
+        subjects.add(Subject("생존코딩: 5장 비만도 계산기", BmiCalculatorMainActivity::class.java))
         subjects.add(Subject("스탑워치", StopWatchMainActivity::class.java))
+        subjects.add(Subject("구글캘린더 조작", Item10Activity::class.java))
+        subjects.add(Subject("생존코딩: 9장 전자액자", MyGalleryActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()

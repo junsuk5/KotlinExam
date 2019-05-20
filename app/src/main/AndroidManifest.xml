@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kotlinexam">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 구글 플레이 필터링 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" /> <!-- 구글 플레이 필터링 -->
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
@@ -15,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".survivalcoding06.StopWatchMainActivity"></activity>
+        <activity android:name=".survivalcoding09.MyGalleryActivity"></activity>
+        <activity android:name=".item10.Item10Activity" />
+        <activity android:name=".survivalcoding06.StopWatchMainActivity" />
         <activity android:name=".survivalcoding05.BmiCalculatorMainActivity" />
         <activity android:name=".item09java.Item09JavaActivity" />
         <activity android:name=".item08java.Item08JavaActivity" />
