@@ -4,11 +4,11 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.kotlinexam.R
+import com.example.kotlinexam.logd
 import com.example.kotlinexam.toast
 
 class MyGalleryActivity : AppCompatActivity() {
@@ -21,23 +21,33 @@ class MyGalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_gallery)
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+            ) {
                 // 이전에 이미 권한이 거부되었을 때 설명
                 AlertFragment {
                     // 권한 요청
-                    ActivityCompat.requestPermissions(this,
+                    ActivityCompat.requestPermissions(
+                        this,
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        REQUEST_READ_EXTERNAL_STORAGE)
+                        REQUEST_READ_EXTERNAL_STORAGE
+                    )
                 }.show(supportFragmentManager, "dialog")
 
             } else {
                 // 권한 요청
-                ActivityCompat.requestPermissions(this,
+                ActivityCompat.requestPermissions(
+                    this,
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    REQUEST_READ_EXTERNAL_STORAGE)
+                    REQUEST_READ_EXTERNAL_STORAGE
+                )
             }
         } else {
             // 권한이 이미 허용 됨
@@ -56,7 +66,8 @@ class MyGalleryActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_READ_EXTERNAL_STORAGE -> {
                 if ((grantResults.isNotEmpty()
-                            && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
                     // 권한 허용됨
                     getAllPhotos()
                 } else {
@@ -69,12 +80,14 @@ class MyGalleryActivity : AppCompatActivity() {
 
     private fun getAllPhotos() {
         val cursor = contentResolver
-            .query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            .query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 null,
                 null,
                 null,
-                "${MediaStore.Images.ImageColumns.DATE_TAKEN} DESC")
+                "${MediaStore.Images.ImageColumns.DATE_TAKEN} DESC"
+            )
 
-        Log.d(TAG, cursor?.toString())
+        logd(cursor.toString())
     }
 }
