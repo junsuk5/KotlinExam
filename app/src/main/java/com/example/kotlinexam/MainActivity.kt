@@ -22,6 +22,7 @@ import com.example.kotlinexam.item10.Item10Activity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
 import com.example.kotlinexam.survivalcoding09.MyGalleryActivity
+import com.example.kotlinexam.survivalcoding11.TorchMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("스탑워치", StopWatchMainActivity::class.java))
         subjects.add(Subject("구글캘린더 조작", Item10Activity::class.java))
         subjects.add(Subject("생존코딩: 9장 전자액자", MyGalleryActivity::class.java))
+        subjects.add(Subject("생존코딩: 11장 손전등(AppWidget)", TorchMainActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()

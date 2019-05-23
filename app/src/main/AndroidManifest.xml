@@ -5,10 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- 구글 플레이 필터링 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 구글 플레이 필터링 -->
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
@@ -21,7 +18,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".survivalcoding09.MyGalleryActivity"></activity>
+        <receiver
+            android:name=".survivalcoding11.TorchReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+        <receiver android:name=".survivalcoding11.TorchWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/torch_widget_info" />
+        </receiver>
+
+        <activity android:name=".survivalcoding11.TorchMainActivity" />
+        <activity android:name=".survivalcoding09.MyGalleryActivity" />
         <activity android:name=".item10.Item10Activity" />
         <activity android:name=".survivalcoding06.StopWatchMainActivity" />
         <activity android:name=".survivalcoding05.BmiCalculatorMainActivity" />
