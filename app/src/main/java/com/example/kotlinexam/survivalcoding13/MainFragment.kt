@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,11 +32,22 @@ class MainFragment : Fragment() {
         val viewModel = ViewModelProviders.of(requireActivity())
             .get(TodoListViewModel::class.java)
 
-        val adapter = TodoAdapter {
-            // 수정화면
-            val action = MainFragmentDirections.actionMainFragmentToEditFragment(it)
-            findNavController().navigate(action)
-        }
+        val adapter = TodoAdapter(
+            clickListener = {
+                // 수정화면
+                val action = MainFragmentDirections.actionMainFragmentToEditFragment(it)
+                findNavController().navigate(action)
+            },
+            deleteClickListener = {
+                viewModel.delete(it)
+            },
+            updateClickListener = {
+                // 수정화면
+                val action = MainFragmentDirections.actionMainFragmentToEditFragment(it)
+                findNavController().navigate(action)
+            }
+        )
+
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
@@ -47,14 +58,18 @@ class MainFragment : Fragment() {
         })
 
         add_button.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_addFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_addFragment)
         }
 
 
     }
 }
 
-class TodoAdapter(private val clickListener: (todo: Todo) -> Unit) :
+class TodoAdapter(
+    private val clickListener: (todo: Todo) -> Unit,
+    private val deleteClickListener: (todo: Todo) -> Unit,
+    private val updateClickListener: (todo: Todo) -> Unit
+) :
     RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     var items = listOf<Todo>()
@@ -67,6 +82,26 @@ class TodoAdapter(private val clickListener: (todo: Todo) -> Unit) :
         val viewHolder = TodoViewHolder(ItemTodoBinding.bind(view))
         view.setOnClickListener {
             clickListener.invoke(items[viewHolder.adapterPosition])
+        }
+        viewHolder.binding.moreImageView.setOnClickListener {
+            val popupMenu = PopupMenu(parent.context, it)
+            popupMenu.inflate(R.menu.popup_todo)
+            popupMenu.show()
+
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                val item = items[viewHolder.adapterPosition]
+                when (menuItem.itemId) {
+                    R.id.action_delete -> {
+                        deleteClickListener.invoke(item)
+                        true
+                    }
+                    R.id.action_update -> {
+                        updateClickListener.invoke(item)
+                        true
+                    }
+                    else -> false
+                }
+            }
         }
         return viewHolder
     }
