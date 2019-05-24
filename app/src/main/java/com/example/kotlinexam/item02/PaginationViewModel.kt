@@ -7,7 +7,6 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -35,7 +34,7 @@ class PaginationViewModel : ViewModel() {
                 // Background 쓰레드
                 val body = service.getEmployees(page).await()
 
-                withContext(Dispatchers.Main) {
+                launch(Dispatchers.Main) {
                     // Main 쓰레드
                     if (employees.value == null) {
                         employees.value = body

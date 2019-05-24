@@ -17,10 +17,22 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"
         android:name="com.example.kotlinexam.survivalcoding13.EditFragment"
         android:label="수정"
-        tools:layout="@layout/fragment_edit" />
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="todo"
+            app:argType="com.example.kotlinexam.survivalcoding13.db.Todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.kotlinexam.survivalcoding13.AddFragment"
+        android:label="추가"
+        tools:layout="@layout/fragment_add" />
 </navigation>
