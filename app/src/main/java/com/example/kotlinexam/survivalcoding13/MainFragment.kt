@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinexam.R
 import com.example.kotlinexam.databinding.ItemTodoBinding
@@ -53,8 +55,7 @@ class MainFragment : Fragment() {
         recyclerView.adapter = adapter
 
         viewModel.getAll().observe(this, Observer {
-            adapter.items = it
-            adapter.notifyDataSetChanged()
+            adapter.submitList(it)
         })
 
         add_button.setOnClickListener {
@@ -65,14 +66,22 @@ class MainFragment : Fragment() {
     }
 }
 
+class DiffCallback : DiffUtil.ItemCallback<Todo>() {
+    override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean {
+        return oldItem == newItem
+    }
+}
+
 class TodoAdapter(
     private val clickListener: (todo: Todo) -> Unit,
     private val deleteClickListener: (todo: Todo) -> Unit,
     private val updateClickListener: (todo: Todo) -> Unit
 ) :
-    RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
-
-    var items = listOf<Todo>()
+    ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
 
     class TodoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -81,7 +90,7 @@ class TodoAdapter(
             .inflate(R.layout.item_todo, parent, false)
         val viewHolder = TodoViewHolder(ItemTodoBinding.bind(view))
         view.setOnClickListener {
-            clickListener.invoke(items[viewHolder.adapterPosition])
+            clickListener.invoke(getItem(viewHolder.adapterPosition))
         }
         viewHolder.binding.moreImageView.setOnClickListener {
             val popupMenu = PopupMenu(parent.context, it)
@@ -89,7 +98,7 @@ class TodoAdapter(
             popupMenu.show()
 
             popupMenu.setOnMenuItemClickListener { menuItem ->
-                val item = items[viewHolder.adapterPosition]
+                val item = getItem(viewHolder.adapterPosition)
                 when (menuItem.itemId) {
                     R.id.action_delete -> {
                         deleteClickListener.invoke(item)
@@ -106,9 +115,7 @@ class TodoAdapter(
         return viewHolder
     }
 
-    override fun getItemCount() = items.size
-
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.binding.todo = items[position]
+        holder.binding.todo = getItem(position)
     }
 }
