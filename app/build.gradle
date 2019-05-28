@@ -93,4 +93,6 @@ dependencies {
     def nav_version = "2.0.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
