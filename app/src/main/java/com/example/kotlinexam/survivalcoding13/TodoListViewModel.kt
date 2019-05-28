@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.example.kotlinexam.logd
 import com.example.kotlinexam.survivalcoding13.db.AppDatabase
 import com.example.kotlinexam.survivalcoding13.db.Todo
 import kotlinx.coroutines.CoroutineScope
@@ -23,9 +24,9 @@ class TodoListViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun insert(todo: Todo) {
-        CoroutineScope(Dispatchers.IO).launch {
-            db.todoDao().insert(todo)
-        }
+        logd("비동기 시작")
+        db.todoDao().insert(todo)
+        logd("비동기 끝")
     }
 
     fun update(todo: Todo) {

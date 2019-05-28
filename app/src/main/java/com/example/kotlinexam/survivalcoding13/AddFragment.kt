@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.kotlinexam.R
+import com.example.kotlinexam.alert
+import com.example.kotlinexam.logd
 import com.example.kotlinexam.survivalcoding13.db.Todo
 import kotlinx.android.synthetic.main.fragment_edit.*
+import kotlinx.coroutines.*
 import java.util.*
 
-class AddFragment : Fragment() {
+class AddFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO) {
     private var date: Long = 0
 
     override fun onCreateView(
@@ -39,11 +42,34 @@ class AddFragment : Fragment() {
         }
 
         done_button.setOnClickListener {
+            requireContext().alert("test", "test") {
+                positiveButton("yes") {
+                    logd("yes")
+                }
+                negativeButton("no") {
+                    logd("no")
+                }
+            }
             val title = todo_edit.text.toString()
 
-            viewModel.insert(Todo(title, date))
-            it.findNavController().popBackStack()
+            logd("시작")
+
+            launch {
+                delay(2000)
+                viewModel.insert(Todo(title, date))
+
+                launch(Dispatchers.Main) {
+                    logd("끝")
+                    findNavController().popBackStack()
+                }
+            }
+
         }
+    }
+
+    override fun onDestroyView() {
+        cancel()
+        super.onDestroyView()
     }
 
 }
