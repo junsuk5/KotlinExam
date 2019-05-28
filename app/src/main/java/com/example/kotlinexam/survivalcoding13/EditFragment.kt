@@ -70,3 +70,14 @@ class EditFragment : Fragment() {
 
 
 }
+
+class MyClick : View.OnClickListener {
+    override fun onClick(v: View?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+}
+
+class MyClick2 : View.OnClickListener by MyClick() {
+
+}
