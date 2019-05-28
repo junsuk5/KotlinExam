@@ -38,13 +38,18 @@ class MyGalleryActivity : AppCompatActivity() {
                 )
             ) {
                 // 이전에 이미 권한이 거부되었을 때 설명
-                AlertFragment {
-                    // 권한 요청
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        REQUEST_READ_EXTERNAL_STORAGE
-                    )
+                AlertFragment("권한이 필요한 이유", "사진 정보를 얻으려면 외부 저장소 권한이 필수입니다.") {
+                    positiveButton("수락") {
+                        // 권한 요청
+                        ActivityCompat.requestPermissions(
+                            this@MyGalleryActivity,
+                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                            REQUEST_READ_EXTERNAL_STORAGE
+                        )
+                    }
+                    negativeButton("거부") {
+                        dismiss()
+                    }
                 }.show(supportFragmentManager, "dialog")
 
             } else {
