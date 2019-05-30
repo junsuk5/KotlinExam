@@ -46,6 +46,7 @@ class MainFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO
             deleteClickListener = {
                 launch {
                     viewModel.delete(it)
+                    viewModel.getAll()
                 }
             },
             updateClickListener = {

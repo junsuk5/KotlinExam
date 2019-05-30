@@ -10,4 +10,12 @@ data class Todo(
     var date: Long = 0L,
     @PrimaryKey(autoGenerate = true) var id: Long = 0L,
     var uid: String = ""
-) : Serializable
+) : Serializable {
+
+    fun toMap(): Map<String, Any> {
+        return mapOf(
+            "title" to title,
+            "date" to date
+        )
+    }
+}

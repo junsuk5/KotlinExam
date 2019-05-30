@@ -14,12 +14,14 @@ class FireRepository : Repository {
 
     override fun insert(todo: Todo) {
         // id 생성
-        todo.uid = ""
-        Tasks.await(db.collection("todos").add(todo))
+        db.collection("todos").document().apply {
+            todo.uid = id
+        }
+        Tasks.await(db.collection("todos").document(todo.uid).set(todo))
     }
 
     override fun update(todo: Todo) {
-
+        Tasks.await(db.collection("todos").document(todo.uid).update(todo.toMap()))
     }
 
     override fun delete(todo: Todo) {
