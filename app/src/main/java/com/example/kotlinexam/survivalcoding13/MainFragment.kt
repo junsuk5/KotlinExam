@@ -18,8 +18,11 @@ import com.example.kotlinexam.R
 import com.example.kotlinexam.databinding.ItemTodoBinding
 import com.example.kotlinexam.survivalcoding13.db.Todo
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO) {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +44,9 @@ class MainFragment : Fragment() {
                 findNavController().navigate(action)
             },
             deleteClickListener = {
-                viewModel.delete(it)
+                launch {
+                    viewModel.delete(it)
+                }
             },
             updateClickListener = {
                 // 수정화면
@@ -54,7 +59,7 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        viewModel.getAll().observe(this, Observer {
+        viewModel.items.observe(this, Observer {
             adapter.submitList(it)
         })
 
@@ -62,7 +67,9 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_addFragment)
         }
 
-
+        launch {
+            viewModel.getAll()
+        }
     }
 }
 

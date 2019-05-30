@@ -1,12 +1,11 @@
 package com.example.kotlinexam.survivalcoding13.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface TodoDao {
     @Query("SELECT * FROM todo ORDER BY date DESC")
-    fun getAll(): LiveData<List<Todo>>
+    fun getAll(): List<Todo>
 
     @Insert
     fun insert(todo: Todo)

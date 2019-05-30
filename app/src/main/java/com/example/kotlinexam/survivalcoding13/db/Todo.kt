@@ -6,9 +6,8 @@ import java.io.Serializable
 
 @Entity
 data class Todo(
-    var title: String,
-    var date: Long
-) : Serializable {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-}
+    var title: String = "",
+    var date: Long = 0L,
+    @PrimaryKey(autoGenerate = true) var id: Long = 0L,
+    var uid: String = ""
+) : Serializable

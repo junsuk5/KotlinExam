@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.kotlinexam.R
-import com.example.kotlinexam.alert
 import com.example.kotlinexam.logd
 import com.example.kotlinexam.survivalcoding13.db.Todo
 import kotlinx.android.synthetic.main.fragment_edit.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import java.util.*
 
 class AddFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO) {
@@ -42,21 +44,13 @@ class AddFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO)
         }
 
         done_button.setOnClickListener {
-            requireContext().alert("test", "test") {
-                positiveButton("yes") {
-                    logd("yes")
-                }
-                negativeButton("no") {
-                    logd("no")
-                }
-            }
             val title = todo_edit.text.toString()
 
             logd("시작")
 
             launch {
-                delay(2000)
                 viewModel.insert(Todo(title, date))
+                viewModel.getAll()
 
                 launch(Dispatchers.Main) {
                     logd("끝")

@@ -12,10 +12,13 @@ import androidx.navigation.fragment.navArgs
 import com.example.kotlinexam.R
 import com.example.kotlinexam.databinding.FragmentEditBinding
 import kotlinx.android.synthetic.main.fragment_edit.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class EditFragment : Fragment() {
-//    val viewModel: TodoListViewModel by lazy {
+class EditFragment : Fragment(), CoroutineScope by CoroutineScope(Dispatchers.IO) {
+    //    val viewModel: TodoListViewModel by lazy {
 //        ViewModelProviders.of(requireActivity())
 //            .get(TodoListViewModel::class.java)
 //    }
@@ -58,13 +61,25 @@ class EditFragment : Fragment() {
             todo.title = title
             todo.date = date
 
-            viewModel.update(todo)
-            findNavController().popBackStack()
+            launch {
+                viewModel.update(todo)
+                viewModel.getAll()
+
+                launch(Dispatchers.Main) {
+                    findNavController().popBackStack()
+                }
+            }
         }
 
         delete_button.setOnClickListener {
-            viewModel.delete(todo)
-            findNavController().popBackStack()
+            launch {
+                viewModel.delete(todo)
+                viewModel.getAll()
+
+                launch(Dispatchers.Main) {
+                    findNavController().popBackStack()
+                }
+            }
         }
     }
 

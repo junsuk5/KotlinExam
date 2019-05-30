@@ -2,43 +2,34 @@ package com.example.kotlinexam.survivalcoding13
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.room.Room
-import com.example.kotlinexam.logd
-import com.example.kotlinexam.survivalcoding13.db.AppDatabase
+import androidx.lifecycle.MutableLiveData
 import com.example.kotlinexam.survivalcoding13.db.Todo
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.kotlinexam.survivalcoding13.repository.FireRepository
+import com.example.kotlinexam.survivalcoding13.repository.Repository
 
 class TodoListViewModel(application: Application) : AndroidViewModel(application) {
-    private val db: AppDatabase by lazy {
-        Room.databaseBuilder(
-            application,
-            AppDatabase::class.java, "todoList"
-        ).build()
+
+    val items = MutableLiveData<List<Todo>>()
+
+    private val repository: Repository by lazy {
+//        RoomRepository(application)
+        FireRepository()
     }
 
-    fun getAll(): LiveData<List<Todo>> {
-        return db.todoDao().getAll()
+    fun getAll() {
+        items.postValue(repository.getAll())
     }
 
     fun insert(todo: Todo) {
-        logd("비동기 시작")
-        db.todoDao().insert(todo)
-        logd("비동기 끝")
+        repository.insert(todo)
     }
 
     fun update(todo: Todo) {
-        CoroutineScope(Dispatchers.IO).launch {
-            db.todoDao().update(todo)
-        }
+        repository.update(todo)
     }
 
     fun delete(todo: Todo) {
-        CoroutineScope(Dispatchers.IO).launch {
-            db.todoDao().delete(todo)
-        }
+        repository.delete(todo)
     }
 
 }
