@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".survivalcoding13.TodoListMainActivity"></activity>
+        <activity android:name=".item11.Item11Activity"></activity>
+        <activity android:name=".survivalcoding13.TodoListMainActivity" />
 
         <receiver
             android:name=".survivalcoding11.TorchReceiver"
