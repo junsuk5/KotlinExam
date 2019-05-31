@@ -20,6 +20,7 @@ import com.example.kotlinexam.item08java.Item08JavaActivity
 import com.example.kotlinexam.item09java.Item09JavaActivity
 import com.example.kotlinexam.item10.Item10Activity
 import com.example.kotlinexam.item11.Item11Activity
+import com.example.kotlinexam.item12.Item12Activity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
 import com.example.kotlinexam.survivalcoding09.MyGalleryActivity
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("생존코딩: 11장 손전등(AppWidget)", TorchMainActivity::class.java))
         subjects.add(Subject("생존코딩: 13장 TodoList", TodoListMainActivity::class.java))
         subjects.add(Subject("Retrofit + Coroutine", Item11Activity::class.java))
+        subjects.add(Subject("채팅 (Navigation, 9-Patch, RecyclerView, Retrofit, Coroutines)", Item12Activity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()
