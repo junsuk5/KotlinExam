@@ -22,6 +22,7 @@ import com.example.kotlinexam.item10.Item10Activity
 import com.example.kotlinexam.item11.Item11Activity
 import com.example.kotlinexam.item12.Item12Activity
 import com.example.kotlinexam.item13java.Item13JavaActivity
+import com.example.kotlinexam.item14.Item14JavaActivity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
 import com.example.kotlinexam.survivalcoding09.MyGalleryActivity
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("Retrofit + Coroutine", Item11Activity::class.java))
         subjects.add(Subject("채팅 (Navigation, 9-Patch, RecyclerView, Retrofit, Coroutines)", Item12Activity::class.java))
         subjects.add(Subject("RxJava", Item13JavaActivity::class.java))
+        subjects.add(Subject("QrCode 생성", Item14JavaActivity::class.java))
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()

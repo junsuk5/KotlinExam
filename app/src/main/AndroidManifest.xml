@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".item13java.Item13JavaActivity"></activity>
+        <activity android:name=".item14.Item14JavaActivity"></activity>
+        <activity android:name=".item13java.Item13JavaActivity" />
         <activity android:name=".item12.Item12Activity" />
         <activity android:name=".item11.Item11Activity" />
         <activity android:name=".survivalcoding13.TodoListMainActivity" />
