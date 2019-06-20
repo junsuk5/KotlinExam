@@ -73,7 +73,7 @@ class ChatClient(
 
         init {
             try {
-                mName = nickName
+                   mName = nickName
                 mOutputStream = DataOutputStream(mSocket!!.getOutputStream())
                 mOutputStream!!.writeUTF(nickName)
                 mOutputStream!!.flush()
