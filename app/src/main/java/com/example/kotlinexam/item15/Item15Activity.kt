@@ -17,9 +17,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.zomato.photofilters.imageprocessors.Filter
-import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubfilter
 import kotlinx.android.synthetic.main.activity_item15.*
+import kotlin.math.min
+import kotlin.math.sqrt
 
 class Item15Activity : AppCompatActivity() {
     private val viewModel by lazy {
@@ -81,11 +81,84 @@ class Item15Activity : AppCompatActivity() {
             val thumbnail: Bitmap = data.getParcelableExtra("data")
             // Do other work with full size photo saved in locationForPhotos
 
-            val filter = Filter()
-            filter.addSubFilter(ContrastSubfilter(0.5f))
-
-            viewModel.bitmap.value = filter.processFilter(thumbnail)
+            viewModel.bitmap.value = mangwonkyung(thumbnail, 50)
         }
+    }
+    fun red(src: Bitmap, value: Int): Bitmap {
+        // image size
+        val width = src.width
+        val height = src.height
+        // create output bitmap
+        val bmOut = Bitmap.createBitmap(width, height, src.config)
+        // color information
+        var A: Int
+        var R: Int
+        var G: Int
+        var B: Int
+        var pixel: Int
+
+        // scan through all pixels
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                // get pixel color
+                pixel = src.getPixel(x, y)
+                A = Color.alpha(pixel)
+                R = Color.red(pixel)
+                R = min(255, R + value)
+                G = Color.red(pixel)
+                B = Color.red(pixel)
+
+                // set new pixel color to output bitmap
+                bmOut.setPixel(x, y, Color.argb(A, R, G, B))
+            }
+        }
+
+        // return final image
+        return bmOut
+    }
+
+    fun mangwonkyung(src: Bitmap, value: Int): Bitmap {
+        // image size
+        val width = src.width
+        val height = src.height
+
+        val radius = value
+
+        val centerX = width / 2
+        val centerY = height / 2
+
+        // create output bitmap
+        val bmOut = Bitmap.createBitmap(width, height, src.config)
+        // color information
+        var A: Int
+        var R: Int
+        var G: Int
+        var B: Int
+        var pixel: Int
+
+        // scan through all pixels
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                // get pixel color
+                pixel = src.getPixel(x, y)
+                A = Color.alpha(pixel)
+                R = Color.red(pixel)
+                G = Color.red(pixel)
+                B = Color.red(pixel)
+
+                val distance = sqrt((centerX - x) * (centerX - x) + (centerY - y) * (centerY - y).toDouble())
+
+                if (distance < radius) {
+                    bmOut.setPixel(x, y, Color.argb(A, R, G, B))
+                } else {
+                    bmOut.setPixel(x, y, Color.BLACK)
+                }
+
+            }
+        }
+
+        // return final image
+        return bmOut
     }
 
     fun createContrast(src: Bitmap, value: Double): Bitmap {
