@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".item14.Item14JavaActivity"></activity>
+        <activity android:name=".item15.Item15Activity"></activity>
+        <activity android:name=".item14.Item14JavaActivity" />
         <activity android:name=".item13java.Item13JavaActivity" />
         <activity android:name=".item12.Item12Activity" />
         <activity android:name=".item11.Item11Activity" />
@@ -64,15 +65,13 @@
         </activity>
 
         <provider
-            android:authorities="com.example.kotlinexam.fileprovider"
             android:name="androidx.core.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
-
+            android:authorities="com.example.kotlinexam.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
-
         </provider>
     </application>
 

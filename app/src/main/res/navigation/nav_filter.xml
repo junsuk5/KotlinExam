@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_filter"
+    app:startDestination="@id/filtersFragment">
+
+    <fragment
+        android:id="@+id/filtersFragment"
+        android:name="com.example.kotlinexam.item15.FiltersFragment"
+        android:label="fragment_filters"
+        tools:layout="@layout/fragment_filters" />
+    <fragment
+        android:id="@+id/editFragment2"
+        android:name="com.example.kotlinexam.item15.EditFragment"
+        android:label="fragment_edit2"
+        tools:layout="@layout/fragment_edit2" />
+</navigation>
