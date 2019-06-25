@@ -9,18 +9,25 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.*
 import com.example.kotlinexam.R
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import java.util.concurrent.TimeUnit
 
 class NotificationWorker(context: Context, workerParams: WorkerParameters) :
-    Worker(context, workerParams) {
+    CoroutineWorker(context, workerParams) {
 
-    override fun doWork(): Result {
+    override suspend fun doWork(): Result = coroutineScope {
         val title = inputData.getString("title")!!
         val text = inputData.getString("text")!!
         val id = inputData.getInt("id", 0)
 
-        sendNotification(title, text, id)
-        return Result.success()
+        val job = async {
+            sendNotification(title, text, id)
+        }
+
+        job.await()
+
+        return@coroutineScope Result.success()
     }
 
     private fun sendNotification(title: String, text: String, id: Int) {
