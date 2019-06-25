@@ -25,6 +25,7 @@ import com.example.kotlinexam.item13java.Item13JavaActivity
 import com.example.kotlinexam.item14.Item14JavaActivity
 import com.example.kotlinexam.item15.Item15Activity
 import com.example.kotlinexam.item16.Item16Activity
+import com.example.kotlinexam.item17.Item17Activity
 import com.example.kotlinexam.survivalcoding05.BmiCalculatorMainActivity
 import com.example.kotlinexam.survivalcoding06.StopWatchMainActivity
 import com.example.kotlinexam.survivalcoding09.MyGalleryActivity
@@ -73,6 +74,9 @@ class MainActivity : AppCompatActivity() {
         subjects.add(Subject("QrCode 생성", Item14JavaActivity::class.java))
         subjects.add(Subject("이미지 필터", Item15Activity::class.java))
         subjects.add(Subject("ML 바코드 리더", Item16Activity::class.java))
+        subjects.add(Subject("커스텀 바코드 리더", Item17Activity::class.java))
+
+        subjects.reverse()
 
         adapter.items = subjects
         adapter.notifyDataSetChanged()

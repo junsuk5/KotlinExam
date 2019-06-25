@@ -21,9 +21,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".item17.Item17Activity"
+            android:label="@string/title_activity_item17"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".item16.Item16Activity"
             android:label="@string/title_activity_item16"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".item15.Item15Activity" />
         <activity android:name=".item14.Item14JavaActivity" />
         <activity android:name=".item13java.Item13JavaActivity" />
