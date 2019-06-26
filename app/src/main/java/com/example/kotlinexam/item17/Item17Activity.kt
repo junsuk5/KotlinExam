@@ -1,10 +1,15 @@
 package com.example.kotlinexam.item17
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.ResultPoint
@@ -17,6 +22,36 @@ import kotlinx.android.synthetic.main.content_item17.*
 
 
 class Item17Activity : AppCompatActivity() {
+    companion object {
+        private const val REQUEST_CODE_PERMISSIONS = 10
+    }
+
+    private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                zxing_barcode_scanner.decodeContinuous(callback)
+            } else {
+
+                Toast.makeText(this,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            applicationContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
     private lateinit var beepManager: BeepManager
     private var lastText: String? = null
 
@@ -54,7 +89,12 @@ class Item17Activity : AppCompatActivity() {
 
         beepManager = BeepManager(this)
 
-        zxing_barcode_scanner.decodeContinuous(callback)
+        if (allPermissionsGranted()) {
+            zxing_barcode_scanner.decodeContinuous(callback)
+        } else {
+            ActivityCompat.requestPermissions(
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        }
     }
 
     override fun onResume() {
